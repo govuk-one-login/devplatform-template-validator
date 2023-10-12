@@ -1,0 +1,60 @@
+name: Update Changelog
+# Updates Changelog.
+
+on:
+  push:
+    branches:
+      - main
+  
+jobs: 
+ update-changelog-and-tag:
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        # with:
+        #   token: ${{ secrets.LEAD_ENGINEER_TOKEN }}
+
+      - name: Set update type from changelog
+        if: ${{ env.UPDATE_CHANGELOG }}
+        run: |
+          UNRELEASED_CHANGES=$(grep "^## \[Unreleased\]" $CHANGELOG_FILE)
+
+          if [ -z "$UNRELEASED_CHANGES" ] # If UNRELEASED_CHANGES is empty
+          then
+            echo "$CHANGELOG_FILE doesn't contain unreleased changes"
+            exit 1
+          else
+            echo "$CHANGELOG_FILE contains unreleased changes: $UNRELEASED_CHANGES"
+          fi
+
+          UPDATE_TYPE_REGEX='^## \[Unreleased\] - (MAJOR|MINOR|PATCH)' # Capture MAJOR|MINOR|PATCH in group 1
+          if [[ $UNRELEASED_CHANGES =~ $UPDATE_TYPE_REGEX ]]
+          then
+            UPDATE_TYPE="${BASH_REMATCH[1]}" # Set UPDATE_TYPE to group 1 content
+            echo "$CHANGELOG_FILE contains update type ${UPDATE_TYPE}"
+          else
+            echo "$CHANGELOG_FILE doesn't contain update type"
+            exit 1
+          fi
+          echo "UPDATE_TYPE=$UPDATE_TYPE" >> $GITHUB_ENV
+        shell: bash
+
+      - name: Update Changelog with new version
+        if: ${{ env.UPDATE_CHANGELOG }}
+        run:  |
+          echo "Changes found in ${{ env.CHANGELOG_FILE }}, updating version to ${{ env.VERSION }}"
+          sed -i "s/^## \[Unreleased\].*/## \[${{ env.VERSION }}\] \- $(date '+%Y-%m-%d')/" ${{ env.CHANGELOG_FILE }}
+        shell: bash
+
+      # Commit and push the updated CHANGELOG.md
+      - name: commit and tag
+        if: ${{ env.UPDATE_CHANGELOG }}
+        run: |
+          # Stage the file, commit and push
+          tag="${{ env.VERSION }}"
+          git add ${{ env.CHANGELOG_FILE }}
+          git commit -m "Publishing: $tag"
+          git tag -a "$tag" -m "$tag"
+          git push --atomic origin main "$tag"
