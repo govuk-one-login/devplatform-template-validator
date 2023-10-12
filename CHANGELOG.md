@@ -11,6 +11,9 @@ The version and date will automatically be inserted when the release workflow ru
 See [here](https://keepachangelog.com/en/1.1.0/#how) for a list of `Types of changes` labels.
 
 ## [Unreleased] - PATCH
+### Added
+- Testing
 
+## [v0.0.1] - 2023-10-12 
 ### Added
 - Initial changelog
