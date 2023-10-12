@@ -24,7 +24,6 @@ if [[ rootModified=true ]]
        echo "UPDATE_CHANGELOG=true" >> $GITHUB_ENV
 
     fi
-    done
     # If the updated stack has not had the changelog updated then stop:
     if [[ $UPDATE_CHANGELOG != true ]]
         then
