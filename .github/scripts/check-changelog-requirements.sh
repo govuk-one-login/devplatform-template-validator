@@ -22,6 +22,10 @@ if [[ rootModified=true ]]
        UPDATE_CHANGELOG=true
        echo "UPDATE_CHANGELOG=true"
        echo "UPDATE_CHANGELOG=true" >> $GITHUB_ENV
+       
+       CHANGELOG_FILE=CHANGELOG.md
+       echo "CHANGELOG_FILE=CHANGELOG.md"
+       echo "CHANGELOG_FILE=CHANGELOG.md" >> $GITHUB_ENV
 fi
     # If the updated stack has not had the changelog updated then stop:
 if [[ $UPDATE_CHANGELOG != true ]]
