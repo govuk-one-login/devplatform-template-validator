@@ -15,6 +15,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           token: ${{ secrets.LEAD_ENGINEER_TOKEN }}
+          fetch-depth: '0' # Needed for git diff-tree to compare
 
       - name: Set update type from changelog
         if: ${{ env.UPDATE_CHANGELOG }}
