@@ -13,4 +13,4 @@ See [here](https://keepachangelog.com/en/1.1.0/#how) for a list of `Types of cha
 ## [Unreleased] - PATCH
 
 ### Added
-- Initial changelog update.
+- Initial changelog update

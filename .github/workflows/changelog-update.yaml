@@ -16,9 +16,9 @@ jobs:
         with:
           token: ${{ secrets.LEAD_ENGINEER_TOKEN }}
           fetch-depth: '0' # Needed for git diff-tree to compare
-
-      - name: echo env changelog
-        run: echo ${{ env.UPDATE_CHANGELOG }}
+      
+      - name: If a stack directory and changelog is updated set the needed outputs
+        run: '.github/scripts/check-changelog-requirements.sh'
         shell: bash
 
       - name: Set update type from changelog
