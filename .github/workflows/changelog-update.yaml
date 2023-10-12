@@ -17,7 +17,12 @@ jobs:
           token: ${{ secrets.LEAD_ENGINEER_TOKEN }}
           fetch-depth: '0' # Needed for git diff-tree to compare
 
+      - name: echo env changelog
+        run: echo ${{ env.UPDATE_CHANGELOG }}
+        shell: bash
+
       - name: Set update type from changelog
+          echo ${{ env.UPDATE_CHANGELOG }}
         if: ${{ env.UPDATE_CHANGELOG }}
         run: |
           UNRELEASED_CHANGES=$(grep "^## \[Unreleased\]" $CHANGELOG_FILE)
