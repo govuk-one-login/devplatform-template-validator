@@ -57,8 +57,7 @@ jobs:
       - name: Get current version
         if: ${{ env.UPDATE_CHANGELOG }}
         run: |
-          $(cat CHANGELOG.md)
-          CURRENT_VERSION=$(grep -o -m 1 "## \[[0-9.]*\]" CHANGELOG.md)
+          CURRENT_VERSION=$(cat -o -m 1 "## \[[0-9.]*\]" CHANGELOG.md)
           echo "CURRENT_VERSION=$CURRENT_VERSION" >> $GITHUB_ENV
         shell: bash
 
