@@ -4,7 +4,7 @@ name: Update Changelog
 on:
   push:
     branches:
-      - PLAT-2702-Changelog
+      - main
   
 jobs: 
  update-changelog-and-tag:
