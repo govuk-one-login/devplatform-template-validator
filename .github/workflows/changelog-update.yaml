@@ -4,7 +4,7 @@ name: Update Changelog
 on:
   push:
     branches:
-      - main
+      - PLAT-2702-Changelog
   
 jobs: 
  update-changelog-and-tag:
@@ -22,9 +22,9 @@ jobs:
         shell: bash
 
       - name: Set update type from changelog
-          echo ${{ env.UPDATE_CHANGELOG }}
         if: ${{ env.UPDATE_CHANGELOG }}
         run: |
+          echo UNRELEASED_CHANGES=$(grep "^## \[Unreleased\]" $CHANGELOG_FILE)
           UNRELEASED_CHANGES=$(grep "^## \[Unreleased\]" $CHANGELOG_FILE)
 
           if [ -z "$UNRELEASED_CHANGES" ] # If UNRELEASED_CHANGES is empty
