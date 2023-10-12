@@ -13,8 +13,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        # with:
-        #   token: ${{ secrets.LEAD_ENGINEER_TOKEN }}
+        with:
+          token: ${{ secrets.LEAD_ENGINEER_TOKEN }}
 
       - name: Set update type from changelog
         if: ${{ env.UPDATE_CHANGELOG }}
@@ -40,6 +40,13 @@ jobs:
           fi
           echo "UPDATE_TYPE=$UPDATE_TYPE" >> $GITHUB_ENV
         shell: bash
+      
+       # Using Lead Engineer's account here (not possible to alter GITHUB_TOKEN to include write permissions- project policy)
+      - name: setup git config
+        if: ${{ env.UPDATE_CHANGELOG }}
+        run: |
+          git config user.name "Dev Platform Release"
+          git config user.email "zeeshan.javed@digital.cabinet-office.gov.uk"
 
       - name: Update Changelog with new version
         if: ${{ env.UPDATE_CHANGELOG }}
