@@ -53,6 +53,18 @@ jobs:
         run: |
           git config user.name "Dev Platform Release"
           git config user.email "zeeshan.javed@digital.cabinet-office.gov.uk"
+        
+      - name: Get current version
+        if: ${{ env.UPDATE_CHANGELOG }}
+        run: |
+          CURRENT_VERSION=$(grep CHANGELOG.md | awk -F : '{ print $2 }' | sed -e 's/^[ \t]*//' )
+          echo "CURRENT_VERSION=$CURRENT_VERSION" >> $GITHUB_ENV
+        shell: bash
+
+      - name: Set new env.VERSION using current version and update type
+        if: ${{ env.UPDATE_CHANGELOG }}
+        run: '.github/scripts/version_increment.sh ${{ env.UPDATE_TYPE }} ${{ env.CURRENT_VERSION }}'
+        shell: bash
 
       - name: Update Changelog with new version
         if: ${{ env.UPDATE_CHANGELOG }}
