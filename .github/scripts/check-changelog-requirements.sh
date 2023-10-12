@@ -15,11 +15,21 @@ then
 fi
 done
 
+# See if the change is to a stack
 UPDATE_CHANGELOG=false
-# If the changelog has not been updated then stop:
-if [[ $UPDATE_CHANGELOG != true ]]
+if [[ rootModified=true ]]
     then
-    echo "CHANGELOG.md need to be updated"
-    exit 1
+       UPDATE_CHANGELOG=true
+       echo "UPDATE_CHANGELOG=true"
+       echo "UPDATE_CHANGELOG=true" >> $GITHUB_ENV
+
+    fi
+    done
+    # If the updated stack has not had the changelog updated then stop:
+    if [[ $UPDATE_CHANGELOG != true ]]
+        then
+        echo "Stack Directory $STACK_NAME needs $STACK_NAME/CHANGELOG.md to be updated"
+        exit 1
+    fi
 fi
 done
