@@ -22,13 +22,10 @@ if [[ rootModified=true ]]
        UPDATE_CHANGELOG=true
        echo "UPDATE_CHANGELOG=true"
        echo "UPDATE_CHANGELOG=true" >> $GITHUB_ENV
-
-    fi
-    # If the updated stack has not had the changelog updated then stop:
-    if [[ $UPDATE_CHANGELOG != true ]]
-        then
-        echo "Stack Directory $STACK_NAME needs $STACK_NAME/CHANGELOG.md to be updated"
-        exit 1
-    fi
 fi
-done
+    # If the updated stack has not had the changelog updated then stop:
+if [[ $UPDATE_CHANGELOG != true ]]
+    then
+    echo "Stack Directory $STACK_NAME needs $STACK_NAME/CHANGELOG.md to be updated"
+    exit 1
+fi
