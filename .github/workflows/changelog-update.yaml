@@ -9,7 +9,7 @@ on:
 jobs: 
   update-changelog-and-tag:
     runs-on: ubuntu-latest
-    if: always()
+    if: always() && !contains(github.event.commits[0].message, '[publish-only]')
     steps:
       - name: Checkout
         uses: actions/checkout@v3
