@@ -7,7 +7,7 @@ on:
       - main
   
 jobs: 
- update-changelog-and-tag:
+  update-changelog-and-tag:
     runs-on: ubuntu-latest
     if: always()
     steps:
@@ -16,6 +16,19 @@ jobs:
         with:
           token: ${{ secrets.LEAD_ENGINEER_TOKEN }}
           fetch-depth: '0' # Needed for git diff-tree to compare
+
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Cache Python packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip3.9-${{ hashFiles('.github/workflows/changelog-update.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pip3.9-
       
       - name: If a stack directory and changelog is updated set the needed outputs
         run: '.github/scripts/check-changelog-requirements.sh'
@@ -81,6 +94,28 @@ jobs:
           # Stage the file, commit and push
           tag="${{ env.VERSION }}"
           git add ${{ env.CHANGELOG_FILE }}
-          git commit -m "Publishing: $tag"
+          git commit -m "Publishing: $tag, [publish-only]"
           git tag -a "$tag" -m "$tag"
           git push --atomic origin main "$tag"
+
+  publish:
+    if: |
+      contains(github.event.commits[0].message, '[publish-only]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Cache Python packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip3.9-${{ hashFiles('.github/workflows/changelog-update.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pip3.9-
