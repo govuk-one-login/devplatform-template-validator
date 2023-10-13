@@ -12,6 +12,10 @@ See [here](https://keepachangelog.com/en/1.1.0/#how) for a list of `Types of cha
 
 ## [Unreleased] - PATCH
 ### Added
+- Update changelog version
+
+## [Unreleased] - PATCH
+### Added
 - Testing that changelog-update.yaml will get the correct version and update this relase as v0.0.3
 
 ## [v0.0.2] - 2023-10-12
