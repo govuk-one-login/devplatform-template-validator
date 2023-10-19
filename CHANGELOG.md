@@ -10,18 +10,6 @@ The version and date will automatically be inserted when the release workflow ru
 
 See [here](https://keepachangelog.com/en/1.1.0/#how) for a list of `Types of changes` labels.
 
-## [v0.0.4] - 2023-10-13
+## [Unreleased] - MAJOR
 ### Added
-- Update changelog version
-
-## [v0.0.3] - 2023-10-13
-### Added
-- Testing that changelog-update.yaml will get the correct version and update this relase as v0.0.3
-
-## [v0.0.2] - 2023-10-12
-### Added
-- Testing
-
-## [v0.0.1] - 2023-10-12 
-### Added
-- Initial changelog
+- Initial Changelog 
