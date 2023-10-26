@@ -1,2 +1,3 @@
-### Node ###
+### Node and Jest ###
 node_modules
+coverage
