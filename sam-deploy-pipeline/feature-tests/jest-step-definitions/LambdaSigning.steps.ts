@@ -1,7 +1,7 @@
 import { defineFeature, loadFeature } from 'jest-cucumber';
 import { Template, Capture, Match } from '@aws-cdk/assertions';
 const { schema } = require('yaml-cfn');
-import { exportTemplate } from '../../shared-steps/export-template/shared-step-template';
+import { exportTemplate } from '../../../shared-steps/export-template/shared-step-template'
 import { readFileSync } from 'fs';
 import { load } from 'js-yaml';
 

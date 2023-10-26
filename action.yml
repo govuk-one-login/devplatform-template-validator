@@ -1,0 +1,11 @@
+name: 'devplatform-template-validator'
+description: 'validates template.yaml files'
+
+inputs:
+  templatePath:
+    description: 'Path to dir containing template.yaml file'
+    required: true
+
+runs:
+  using: 'node12'
+  main: 'index.ts'
