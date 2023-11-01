@@ -11,7 +11,7 @@ async function run() {
         // User inputs the path
         const templatePath = core.getInput('templatePath', { required: true });
         // Local Test
-        // const templatePath = path.resolve("./sam-deploy-pipeline/template.yaml")
+        // const templatePath = path.resolve("sam-deploy-pipeline/template.yaml")
 
         // check if the input has been provided or not, if not user will see an error
         if (!templatePath) {
