@@ -3,6 +3,7 @@ import * as exec from '@actions/exec'
 import { readFileSync } from 'fs';
 import pkg from 'js-yaml';
 const { load } = pkg;
+const { schema } = require('yaml-cfn');
 import * as path from 'path'
 
 async function run() {
@@ -10,7 +11,7 @@ async function run() {
         // User inputs the path
         const templatePath = core.getInput('templatePath', { required: true });
         // Local Test
-        // const templatePath = path.resolve("./template.yaml")
+        // const templatePath = path.resolve("./sam-deploy-pipeline/template.yaml")
 
         // check if the input has been provided or not, if not user will see an error
         if (!templatePath) {
@@ -20,7 +21,7 @@ async function run() {
 
         //load content of the template.yaml file that the user has given the path to
         const templateContent: string = readFileSync(templatePath, 'utf8')
-        const templateData: any = load(templateContent)
+        const templateData: any = load(templateContent, { schema: schema })
         // grep description heading in the yaml file
         const templateDescription = templateData['Description'];
         
