@@ -12,6 +12,10 @@ See [here](https://keepachangelog.com/en/1.1.0/#how) for a list of `Types of cha
 
 ## [v1.1.2] - 2023-11-02
 ### Added
+- Current working directory set as templateValidator in tests
+
+## [Unreleased] - PATCH
+### Added
 - index.js updated filepaths
 
 ## [v1.1.1] - 2023-11-01

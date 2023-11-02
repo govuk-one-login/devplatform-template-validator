@@ -35440,11 +35440,12 @@ async function run() {
         const templateData = load(templateContent, { schema: schema });
         // grep description heading in the yaml file
         const templateDescription = templateData['Description'];
+        const cwd = 'templateValidator';
         //checking if the description contains sam-deploy-pipeline line (will change to include all testable stacks after POC)
         if (templateDescription.includes("sam-deploy-pipeline")) 
         // then run tests specific to the stack
         {
-            await _actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec('npm', ['test', '-w', 'sam-deploy-pipeline']);
+            await _actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec('npm', ['test', '-w', 'sam-deploy-pipeline'], { cwd });
         }
         else {
             _actions_core__WEBPACK_IMPORTED_MODULE_0__.info("description of template doesn't contain the correct keyword");
