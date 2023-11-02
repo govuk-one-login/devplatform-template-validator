@@ -35418,28 +35418,25 @@ var __webpack_exports__ = {};
 /* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__nccwpck_require__.n(fs__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var js_yaml__WEBPACK_IMPORTED_MODULE_3__ = __nccwpck_require__(8687);
 /* harmony import */ var js_yaml__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__nccwpck_require__.n(js_yaml__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_4__ = __nccwpck_require__(1017);
-/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__nccwpck_require__.n(path__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
 
 const { load } = (js_yaml__WEBPACK_IMPORTED_MODULE_3___default());
 const { schema } = __nccwpck_require__(526);
-
 async function run() {
     try {
         // User inputs the path
-        // const templatePath = core.getInput('templatePath', { required: true });
+        const templatePath = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('templatePath', { required: true });
         // Local Test
-        const templatePath = __nccwpck_require__.ab + "template.yaml";
+        // const templatePath = path.resolve("sam-deploy-pipeline/template.yaml")
         // check if the input has been provided or not, if not user will see an error
         if (!templatePath) {
             _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed("the path of your template.yaml file is required, please provide it in your workflow as per the documentation");
             return;
         }
         //load content of the template.yaml file that the user has given the path to
-        const templateContent = (0,fs__WEBPACK_IMPORTED_MODULE_2__.readFileSync)(__nccwpck_require__.ab + "template.yaml", 'utf8');
+        const templateContent = (0,fs__WEBPACK_IMPORTED_MODULE_2__.readFileSync)(templatePath, 'utf8');
         const templateData = load(templateContent, { schema: schema });
         // grep description heading in the yaml file
         const templateDescription = templateData['Description'];
