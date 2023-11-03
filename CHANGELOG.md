@@ -10,6 +10,10 @@ The version and date will automatically be inserted when the release workflow ru
 
 See [here](https://keepachangelog.com/en/1.1.0/#how) for a list of `Types of changes` labels.
 
+## [Unreleased] - PATCH
+### Added
+- Relative path added to shared steps
+
 ## [v1.1.3] - 2023-11-02
 ### Added
 - Current working directory set as templateValidator in tests
