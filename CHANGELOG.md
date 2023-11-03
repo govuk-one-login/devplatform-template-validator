@@ -10,6 +10,10 @@ The version and date will automatically be inserted when the release workflow ru
 
 See [here](https://keepachangelog.com/en/1.1.0/#how) for a list of `Types of changes` labels.
 
+## [Unreleased] - PATCH
+### Added
+- Updated relative path for exportTemplate
+
 ## [v1.1.4] - 2023-11-03
 ### Added
 - Relative path added to shared steps
