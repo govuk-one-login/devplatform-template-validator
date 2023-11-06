@@ -50,11 +50,17 @@ The GitHub Action defined above performs the following steps:
 This Action defines the following inputs:
 |  Name  |  Required  |  Description  |
 | :----: | :--------: | :-----------: |
-`templatePath` | true | Provide the path to the template.yaml file within your repository. For example ./path-to/template.yaml                           
+`templatePath` | true | Provide the path to the template.yaml file within your repository. For example ./path-to/template.yaml 
 
-## Changelog
-This repository contains a Changelog which tracks versions and changes, with guidance on how to update it.
+-------
 
-## Tools Required
+## Contributions
+
+### Changelog
+This repository contains a Changelog which tracks versions and changes, with guidance on how to update it. Changelog will run on push to main.
+
+### Compiling Typescript
+- Any changes to the index.ts file will require the user to run `npm build`. This will manually compile the new index.ts file into the main index.js.
+
+### Tools Required
 - pre-commit - ```pre-commit install```
-
