@@ -63,4 +63,6 @@ This repository contains a Changelog which tracks versions and changes, with gui
 - Any changes to the index.ts file will require the user to run `npm build`. This will manually compile the new index.ts file into the main index.js.
 
 ### Tools Required
-- pre-commit - ```pre-commit install```
+- For best practices use pre-commit when contributing;
+  - Use the command ```pip install pre-commit``` to install pre-commit
+  - And ```pre-commit install``` to set up the Git hook scripts
