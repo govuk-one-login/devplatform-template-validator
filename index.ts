@@ -7,7 +7,7 @@ const { schema } = require('yaml-cfn');
 import * as path from 'path'
 
 async function run() {
-    try { 
+    try {
         // User inputs the path
         const templatePath = core.getInput('templatePath', { required: true });
         // Local Test
@@ -32,7 +32,7 @@ async function run() {
             {await exec.exec('npm', ['test', '-w', 'sam-deploy-pipeline'], { cwd });
             } else {
                 core.info("description of template doesn't contain the correct keyword");
-            } 
+            }
             } catch (error: any) {
                 core.setFailed(error.message);
             }

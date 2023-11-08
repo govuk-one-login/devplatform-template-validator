@@ -22,7 +22,7 @@ if [[ rootModified=true ]]
        UPDATE_CHANGELOG=true
        echo "UPDATE_CHANGELOG=true"
        echo "UPDATE_CHANGELOG=true" >> $GITHUB_ENV
-       
+
        CHANGELOG_FILE=CHANGELOG.md
        echo "CHANGELOG_FILE=CHANGELOG.md"
        echo "CHANGELOG_FILE=CHANGELOG.md" >> $GITHUB_ENV
