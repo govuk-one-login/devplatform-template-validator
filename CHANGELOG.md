@@ -10,7 +10,7 @@ The version and date will automatically be inserted when the release workflow ru
 
 See [here](https://keepachangelog.com/en/1.1.0/#how) for a list of `Types of changes` labels.
 
-## [Unreleased] - PATCH
+## [v1.1.7] - 2023-11-09
 ### Added
 - Pre-commit configured
 
