@@ -5,8 +5,8 @@ on:
   push:
     branches:
       - main
-  
-jobs: 
+
+jobs:
   update-changelog-and-tag:
     runs-on: ubuntu-latest
     if: always() && !contains(github.event.commits[0].message, '[publish-only]')
@@ -29,7 +29,7 @@ jobs:
           key: ${{ runner.os }}-pip3.9-${{ hashFiles('.github/workflows/changelog-update.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pip3.9-
-      
+
       - name: If a stack directory and changelog is updated set the needed outputs
         run: '.github/scripts/check-changelog-requirements.sh'
         shell: bash
@@ -59,14 +59,14 @@ jobs:
           fi
           echo "UPDATE_TYPE=$UPDATE_TYPE" >> $GITHUB_ENV
         shell: bash
-      
+
        # Using Lead Engineer's account here (not possible to alter GITHUB_TOKEN to include write permissions- project policy)
       - name: setup git config
         if: ${{ env.UPDATE_CHANGELOG }}
         run: |
           git config user.name "Dev Platform Release"
           git config user.email "zeeshan.javed@digital.cabinet-office.gov.uk"
-        
+
       - name: Get current version
         if: ${{ env.UPDATE_CHANGELOG }}
         run: |
