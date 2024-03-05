@@ -12,7 +12,7 @@ jobs:
     if: always() && !contains(github.event.commits[0].message, '[publish-only]')
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.LEAD_ENGINEER_TOKEN }}
           fetch-depth: '0' # Needed for git diff-tree to compare
@@ -105,7 +105,7 @@ jobs:
     timeout-minutes: 60
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install Python
         uses: actions/setup-python@v5
