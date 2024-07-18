@@ -35,6 +35,9 @@
     "typescript": "^5.4.2",
     "yaml-cfn": "^0.3.2"
   },
+  "overrides": {
+    "braces": "^3.0.3"
+  },
   "workspaces": [
     "sam-deploy-pipeline"
   ]
